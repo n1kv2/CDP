@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Dream Party - Iscrizione</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #6C5CE7;
+            --primary-light: #A29BFE;
+            --secondary-accent: #00B894;
+            --background-gradient-start: #F7F5FE;
+            --background-gradient-end: #E0ECFF;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --label-color: #555555;
+            --border-color: #E0E0E0;
+            --success-bg: #D4EDDA;
+            --success-text: #155724;
+            --error-bg: #F8D7DA;
+            --error-text: #721c24;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-strong: rgba(0, 0, 0, 0.2);
+            --danger-color: #FF7675;
+            --placeholder-color: #b0b0b0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        h4 {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            color: var(--secondary-accent);
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 35px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 184, 148, 0.1) 20%, rgba(0, 184, 148, 0.1) 80%, transparent 100%);
+            padding: 8px 0;
+            border-radius: 5px;
+            display: block;
+            text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.02);
+        }
+
+        .container {
+            background-color: var(--card-background);
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px var(--shadow-strong);
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--shadow-strong);
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            text-align: center;
+            color: var(--primary-accent);
+            margin-bottom: 35px;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            text-align: center;
+            color: var(--primary-accent);
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-family: 'Fredoka', sans-serif;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--secondary-accent);
+            font-size: 1.4em;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-accent);
+            padding-bottom: 8px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--label-color);
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 1.05em;
+            color: var(--text-color);
+            background-color: #fcfcfc;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: var(--placeholder-color);
+            opacity: 1;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-accent);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.2);
+            background-color: #ffffff;
+        }
+
+        .form-group input.invalid {
+            border-color: var(--danger-color);
+            box-shadow: 0 0 0 4px rgba(255, 118, 117, 0.2);
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.9em;
+            margin-top: 8px;
+            display: none;
+            font-weight: 500;
+        }
+        .error-message.show {
+            display: block;
+        }
+
+        .friend-fields {
+            background-color: #F8F9FA;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e9ecef;
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--primary-accent) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, var(--primary-light) 0%, var(--primary-accent) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .response-message {
+            text-align: center;
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+            font-size: 1em;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .response-message.show {
+            display: block;
+        }
+        .response-message.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid #c3e6cb;
+        }
+        .response-message.error {
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid #f5c6cb;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed var(--primary-light);
+            margin: 50px 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-strong);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            transform: translateY(-70px);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            font-size: 1.15em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .modal-close-btn {
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.05em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 2.2em;
+                margin-bottom: 25px;
+            }
+            h2 {
+                font-size: 1.6em;
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+            h3 {
+                font-size: 1.2em;
+                padding-bottom: 6px;
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            .form-group input {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            .friend-fields {
+                padding: 20px;
+                border-radius: 12px;
+                margin-bottom: 25px;
+            }
+            button {
+                font-size: 1.05em;
+                padding: 15px 25px;
+            }
+            .response-message {
+                padding: 15px;
+            }
+            hr {
+                margin: 40px 0;
+            }
+            .modal-content {
+                padding: 30px;
+                border-radius: 12px;
+            }
+            .modal-content h2 {
+                font-size: 1.8em;
+            }
+            .modal-content p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 1.4em;
+                margin-top: 25px;
+                margin-bottom: 15px;
+            }
+            h3 {
+                font-size: 1.1em;
+                padding-bottom: 5px;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            .form-group input {
+                padding: 10px 12px;
+            }
+            .friend-fields {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+            button {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+            .response-message {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+            hr {
+                margin: 30px 0;
+            }
+            .modal-content {
+                padding: 25px;
+            }
+            .modal-content h2 {
+                font-size: 1.6em;
+            }
+            .modal-content p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>College Dream Party</h1>
+        <h4>invita 5 amici al CDP e ricevi un coupon di 5€</h4>
+        <form id="inviteForm" action="https://formspree.io/f/movwenak" method="POST" novalidate>
+            <div class="form-group">
+                <label for="inviterName">Il tuo Nome:</label>
+                <input type="text" id="inviterName" name="inviter_name" required>
+                <div class="error-message" id="inviterNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="inviterSurname">Il tuo Cognome:</label>
+                <input type="text" id="inviterSurname" name="inviter_surname" required>
+                <div class="error-message" id="inviterSurnameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="inviterEmail">La tua Email:</label>
+                <input type="email" id="inviterEmail" name="inviter_email" required>
+                <div class="error-message" id="inviterEmailError"></div>
+            </div>
+
+            <hr>
+
+            <h2>Amici che inviti:</h2>
+            <div class="friend-fields">
+                <h3>Amico 1</h3>
+                <div class="form-group">
+                    <label for="friend1Name">Nome:</label>
+                    <input type="text" id="friend1Name" name="friend1_name_input" required>
+                    <div class="error-message" id="friend1NameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend1Surname">Cognome:</label>
+                    <input type="text" id="friend1Surname" name="friend1_surname_input" required>
+                    <div class="error-message" id="friend1SurnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend1Phone">Numero di Telefono:</label>
+                    <input type="tel" id="friend1Phone" name="friend1_phone_input" required pattern="[0-9]{10}">
+                    <div class="error-message" id="friend1PhoneError"></div>
+                </div>
+            </div>
+
+            <div class="friend-fields">
+                <h3>Amico 2</h3>
+                <div class="form-group">
+                    <label for="friend2Name">Nome:</label>
+                    <input type="text" id="friend2Name" name="friend2_name_input" required>
+                    <div class="error-message" id="friend2NameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend2Surname">Cognome:</label>
+                    <input type="text" id="friend2Surname" name="friend2_surname_input" required>
+                    <div class="error-message" id="friend2SurnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend2Phone">Numero di Telefono:</label>
+                    <input type="tel" id="friend2Phone" name="friend2_phone_input" required pattern="[0-9]{10}">
+                    <div class="error-message" id="friend2PhoneError"></div>
+                </div>
+            </div>
+
+            <div class="friend-fields">
+                <h3>Amico 3</h3>
+                <div class="form-group">
+                    <label for="friend3Name">Nome:</label>
+                    <input type="text" id="friend3Name" name="friend3_name_input" required>
+                    <div class="error-message" id="friend3NameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend3Surname">Cognome:</label>
+                    <input type="text" id="friend3Surname" name="friend3_surname_input" required>
+                    <div class="error-message" id="friend3SurnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend3Phone">Numero di Telefono:</label>
+                    <input type="tel" id="friend3Phone" name="friend3_phone_input" required pattern="[0-9]{10}">
+                    <div class="error-message" id="friend3PhoneError"></div>
+                </div>
+            </div>
+
+            <div class="friend-fields">
+                <h3>Amico 4</h3>
+                <div class="form-group">
+                    <label for="friend4Name">Nome:</label>
+                    <input type="text" id="friend4Name" name="friend4_name_input" required>
+                    <div class="error-message" id="friend4NameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend4Surname">Cognome:</label>
+                    <input type="text" id="friend4Surname" name="friend4_surname_input" required>
+                    <div class="error-message" id="friend4SurnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend4Phone">Numero di Telefono:</label>
+                    <input type="tel" id="friend4Phone" name="friend4_phone_input" required pattern="[0-9]{10}">
+                    <div class="error-message" id="friend4PhoneError"></div>
+                </div>
+            </div>
+
+            <div class="friend-fields">
+                <h3>Amico 5</h3>
+                <div class="form-group">
+                    <label for="friend5Name">Nome:</label>
+                    <input type="text" id="friend5Name" name="friend5_name_input" required>
+                    <div class="error-message" id="friend5NameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend5Surname">Cognome:</label>
+                    <input type="text" id="friend5Surname" name="friend5_surname_input" required>
+                    <div class="error-message" id="friend5SurnameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="friend5Phone">Numero di Telefono:</label>
+                    <input type="tel" id="friend5Phone" name="friend5_phone_input" required pattern="[0-9]{10}">
+                    <div class="error-message" id="friend5PhoneError"></div>
+                </div>
+            </div>
+
+            <textarea name="formatted_message" id="formattedMessage" style="display: none;"></textarea>
+
+            <button type="submit">Invia</button>
+            <div id="responseMessage" class="response-message"></div>
+        </form>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Iscrizione Inviata!</h2>
+            <p>Grazie per esserti iscritto alla festa del CDP! Ti abbiamo inviato un'email all'indirizzo fornito con un coupon di 5€ per il prossimo party. Controlla la tua casella di posta!</p>
+            <button class="modal-close-btn" id="closeModalBtn">Chiudi</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('inviteForm');
+            const responseMessage = document.getElementById('responseMessage');
+            const formattedMessageField = document.getElementById('formattedMessage');
+            const modal = document.getElementById('successModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            function showError(inputElement, message) {
+                inputElement.classList.add('invalid');
+                const errorMessageElement = document.getElementById(inputElement.id + 'Error');
+                if (errorMessageElement) {
+                    errorMessageElement.textContent = message;
+                    errorMessageElement.classList.add('show');
+                }
+            }
+
+            function hideError(inputElement) {
+                inputElement.classList.remove('invalid');
+                const errorMessageElement = document.getElementById(inputElement.id + 'Error');
+                if (errorMessageElement) {
+                    errorMessageElement.textContent = '';
+                    errorMessageElement.classList.remove('show');
+                }
+            }
+
+            const allInputs = form.querySelectorAll('input');
+            allInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    hideError(input);
+                });
+            });
+
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                responseMessage.className = 'response-message';
+                responseMessage.textContent = '';
+
+                let isValid = true;
+
+                const inviterInputs = [
+                    { id: 'inviterName', msg: 'Il tuo nome è obbligatorio.' },
+                    { id: 'inviterSurname', msg: 'Il tuo cognome è obbligatorio.' },
+                    { id: 'inviterEmail', msg: 'La tua email è obbligatoria.' }
+                ];
+
+                inviterInputs.forEach(item => {
+                    const input = document.getElementById(item.id);
+                    if (!input.value.trim()) {
+                        showError(input, item.msg);
+                        isValid = false;
+                    } else {
+                        hideError(input);
+                    }
+                });
+
+                const inviterEmailInput = document.getElementById('inviterEmail');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (inviterEmailInput.value.trim() && !emailRegex.test(inviterEmailInput.value.trim())) {
+                    showError(inviterEmailInput, 'Per favore, inserisci un formato email valido (es. esempio@dominio.it).');
+                    isValid = false;
+                } else if (inviterEmailInput.value.trim()) {
+                    hideError(inviterEmailInput);
+                }
+
+
+                const phoneRegex = /^[0-9]{10}$/;
+                for (let i = 1; i <= 5; i++) {
+                    const friendNameInput = document.getElementById(`friend${i}Name`);
+                    const friendSurnameInput = document.getElementById(`friend${i}Surname`);
+                    const friendPhoneInput = document.getElementById(`friend${i}Phone`);
+
+                    if (!friendNameInput.value.trim()) {
+                        showError(friendNameInput, `Il nome dell'amico ${i} è obbligatorio.`);
+                        isValid = false;
+                    } else {
+                        hideError(friendNameInput);
+                    }
+
+                    if (!friendSurnameInput.value.trim()) {
+                        showError(friendSurnameInput, `Il cognome dell'amico ${i} è obbligatorio.`);
+                        isValid = false;
+                    } else {
+                        hideError(friendSurnameInput);
+                    }
+
+                    if (!friendPhoneInput.value.trim()) {
+                        showError(friendPhoneInput, `Il numero di telefono dell'amico ${i} è obbligatorio.`);
+                        isValid = false;
+                    } else {
+                        hideError(friendPhoneInput);
+                    }
+
+                    if (friendPhoneInput.value.trim() && !phoneRegex.test(friendPhoneInput.value.trim())) {
+                        showError(friendPhoneInput, `Il numero di telefono dell'amico ${i} dev'essere valido.`);
+                        isValid = false;
+                    } else if (friendPhoneInput.value.trim()) {
+                        hideError(friendPhoneInput);
+                    }
+                }
+
+                if (!isValid) {
+                    responseMessage.className = 'response-message error show';
+                    responseMessage.textContent = 'Per favore, compila correttamente tutti i campi evidenziati.';
+                    return;
+                }
+
+                let emailContent = "Nuova iscrizione coupon CDP!\n\n";
+
+                emailContent += "--- Dati dell'Invitante ---\n";
+                emailContent += `Nome: ${form.inviterName.value}\n`;
+                emailContent += `Cognome: ${form.inviterSurname.value}\n`;
+                emailContent += `Email: ${form.inviterEmail.value}\n\n`;
+
+                emailContent += "--- Amici Invitati ---\n";
+                for (let i = 1; i <= 5; i++) {
+                    const friendName = document.getElementById(`friend${i}Name`).value;
+                    const friendSurname = document.getElementById(`friend${i}Surname`).value;
+                    const friendPhone = document.getElementById(`friend${i}Phone`).value;
+
+                    emailContent += `\nAmico ${i}:\n`;
+                    emailContent += `Nome: ${friendName}\n`;
+                    emailContent += `Cognome: ${friendSurname}\n`;
+                    emailContent += `Numero: ${friendPhone}\n`;
+                }
+                formattedMessageField.value = emailContent;
+
+                const formData = new FormData(form);
+                formData.append('_subject', `Nuova Iscrizione: Studenti del CDP - ${form.inviterName.value}`);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        showModal();
+                        form.reset();
+                        allInputs.forEach(input => hideError(input));
+
+                    } else {
+                        const data = await response.json();
+                        responseMessage.className = 'response-message error show';
+                        responseMessage.textContent = data.error || 'Si è verificato un errore durante l\'invio. Riprova.';
+                        console.error('Errore da Formspree:', data);
+                    }
+                } catch (error) {
+                    responseMessage.className = 'response-message error show';
+                    responseMessage.textContent = 'Si è verificato un errore di rete. Controlla la tua connessione e riprova.';
+                    console.error('Errore durante l\'invio:', error);
+                }
+            });
+
+            function showModal() {
+                modal.classList.add('show');
+            }
+
+            function hideModal() {
+                modal.classList.remove('show');
+            }
+
+            closeModalBtn.addEventListener('click', hideModal);
+
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    hideModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
